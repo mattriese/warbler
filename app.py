@@ -230,7 +230,7 @@ def stop_following(follow_id):
     return redirect(f"/users/{g.user.id}/following")
 
 
-@app.route('/users/profile', methods=["GET", "POST"]) # TODO: find more RESTful route name
+@app.route('/users/profile', methods=["GET", "POST"])  # TODO: find more RESTful route name
 def edit_profile():
     """Update profile for current user."""
 
@@ -308,12 +308,12 @@ def messages_add():
     form = MessageForm()
 
     if form.validate_on_submit():
-            msg = Message(text=form.text.data)
-            g.user.messages.append(msg)
-            db.session.commit()
-            flash("New Message Added!", "success")
+        msg = Message(text=form.text.data)
+        g.user.messages.append(msg)
+        db.session.commit()
+        flash("New Message Added!", "success")
 
-            return redirect(f"/users/{g.user.id}")
+        return redirect(f"/users/{g.user.id}")
 
     form.user_id.data = g.user.id
     return render_template('messages/new.html', form=form)
